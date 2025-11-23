@@ -88,7 +88,8 @@ while True:
             # Fetch student image from Supabase Storage
             try:
                 bucket = supabase.storage.from_("images")
-                file_content = bucket.download(f"{registration_number}.png").data
+                print("Trying to download:", f"{registration_number}.png")
+                file_content = bucket.download(f"{registration_number}.png")
                 array = np.frombuffer(file_content, np.uint8)
                 imgStudent = cv2.imdecode(array, cv2.IMREAD_COLOR)
             except Exception as e:
